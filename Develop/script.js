@@ -5,68 +5,60 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
  
-  // Create employee object
-  const employee = {
-    firstName: "",
-    lastName: "",
-    salary: 0
-  }
-
   // Create an empty array to add employees' data
   const employeesArray = [];
 
-  // Keep adding employee while userInput still true
-  let keepAdding = true;
+  // Set userInput and keepAdding to true to continue adding new employee
   let userInput = true;
+  let keepAdding = true;
 
-
-  // Repeat until user done adding employees
+  // Loop until user done adding employees
   while (userInput && keepAdding) {
-    // Prompt user for employee's first name
-    userInput = window.prompt("Enter employee's first name:");
-    if (userInput === null) {
-      return;
-    } else {
-      employee.firstName = userInput;
-    }
-
-    // Prompt user for employee's last name
-    userInput = window.prompt("Enter employee's last name:");
-    if (userInput === null) {
-      return
-    } else {
-      employee.lastName = userInput;
-    }
-
-    // Prompt user for employee's salary
-    userInput = window.prompt("Enter employee's salary:");
-    if (userInput === null) {
-      return
-    } else {
-      employee.salary = userInput;
-    }
-
     
+    // Create new employee object
+    const employee = {
+      firstName: "",
+      lastName: "",
+      salary: 0
+    }
 
-    // Add new employee to employees' array
+    // 1. Prompt user for employee's first name
+    userInput = window.prompt("Enter first name:");
+    if (userInput === null) { // Check if user clicked Cancel
+      return;
+    }
+    employee.firstName = userInput;
+    console.log(employee.firstName);
+
+    // 2. Prompt user for employee's last name
+    userInput = window.prompt("Enter last name:");
+    if (userInput === null) { // Check if user clicked Cancel
+      return;
+    }
+    employee.lastName = userInput;
+    console.log(employee.lastName);
+    
+    // 3. Prompt user for employee's salary
+    userInput = window.prompt("Enter salary:");
+    if (userInput === null) { // Check if user clicked Cancel
+      return;
+    }
+    employee.salary = userInput;
+    console.log(employee.salary);
+
+    console.log(employee);
+
+    // Add new employee to the end of employeesArray
     employeesArray.push(employee);
+    
+    console.log(employeesArray);
 
-    // Console logs newly added employee
-    //console.log(employeesArray[employeesArray.length - 1]);
-
-    //console.log(employeesArray);
-
+    // Confirm if user is done adding employee
     keepAdding = window.confirm("Add another employee?");
-
     if (keepAdding === null) {
       return;
     }
-
-    
-
   }
-
-  console.log(employeesArray);
 
   return employeesArray;
 }
@@ -75,8 +67,10 @@ const collectEmployees = function() {
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
   
+  // Set totalSalary to 0
   let totalSalary = 0;
 
+  // Tally totalSalary of all employees in employeesArray
   for (i = 0; i < employeesArray.length; i++) {
     totalSalary =+ employeesArray[i].salary;
   }
