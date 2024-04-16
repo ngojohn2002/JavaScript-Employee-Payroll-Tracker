@@ -12,7 +12,7 @@ const collectEmployees = function() {
   let userInput = true;
   let keepAdding = true;
 
-  // Loop until user done adding employee
+  // Loop until user done adding employee(s)
   while (userInput && keepAdding) {
     
     // Create a new employee object
@@ -23,63 +23,50 @@ const collectEmployees = function() {
     }
 
     //-- 1. Prompt user for employee's first name --
-    userInput = window.prompt("Please enter employee's first name:", "employee's first name");
+    userInput = window.prompt("Please enter employee's first name:");
 
-    // Re-prompt for input if user clicks OK from window.prompt() with empty input
+    //----- 1.1 Validate userInput ------
+    //--------- 1.1.1 Re-prompt when userInput is empty
     while (userInput === "") { 
-      userInput = window.prompt("Nothing entered. Please enter employee's first name:", "employee's first name");
+      userInput = window.prompt("Nothing entered. Please enter employee's first name:");
     }
-
-    // Exit if user clicks Cancel, causing userInput = null
+    //-------- 1.1.2 Exit if user clicks Cancel
     if (userInput === null) { 
       return employeesArray;
     } 
 
-    //---- Set employee's first name ------
-    // Stringify userInput
-    //let stringififiedUserInput = JSON.stringify(userInput); 
-    // Capitalize first letter
-    //let capitalizedFirstLetter = stringififiedUserInput.charAt(0).toUpperCase(); 
+    //---- 1.2 Set employee's first name ------
+    //-------- 1.2.1 Capitalize first letter
     let capitalizedFirstLetter = userInput.charAt(0).toUpperCase(); 
-    // Slice the remaining letters after first
-    //let remainingLetters = stringififiedUserInput.slice(1); 
+    //-------- 1.2.2 Slice the remaining letters after the first letter
     let remainingLetters = userInput.slice(1); 
-    // Set employee's first name
+    //-------- 1.2.3 Set employee's first name
     employee.firstName = capitalizedFirstLetter + remainingLetters;
 
     //-- 2. Prompt user for employee's last name --
-    userInput = window.prompt("Please enter employee's last name:", "employee's last name");
+    userInput = window.prompt("Please enter employee's last name:");
     
-    // Re-prompt for input if user clicks OK from window.prompt() with empty input
+    //----- 2.1 Validate userInput ------
+    //--------- 2.1.1 Re-prompt when userInput is empty
     while (userInput === "") { 
-      userInput = window.prompt("Nothing entered. Enter employee's last name:", "employee's last name");
+      userInput = window.prompt("Nothing entered. Enter employee's last name:");
     }
-
-    // Exit if user clicks Cancel, causing userInput = null
+    //-------- 2.1.2 Exit if user clicks Cancel
     if (userInput === null) { 
       return employeesArray;
     }
-
-     //---- Set employee's last name ------
-    // Stringify userInput
-    //stringififiedUserInput = JSON.stringify(userInput); 
-    // Capitalize first letter
-    //capitalizedFirstLetter = stringifyUserInput.charAt(0).toUpperCase(); 
+    
+    //---- 2.2 Set employee's last name ------
+    //-------- 2.2.1 Capitalize first letter
     capitalizedFirstLetter = userInput.charAt(0).toUpperCase(); 
-    // Slice the remaining letters after first
-    //remainingLetters = stringifyUserInput.slice(1); 
+    //-------- 2.2.2 Slice the remaining letters after first
     remainingLetters = userInput.slice(1); 
-    // Set employee's first name
+    //-------- 2.2.3 Set employee's first name
     employee.lastName = capitalizedFirstLetter + remainingLetters;
 
     //-- 3. Prompt user for employee's salary --
-    userInput = window.prompt("Enter employee's salary:", "employee's salary");
+    userInput = window.prompt("Enter employee's salary:");
     
-    // Re-prompt for input if user clicks OK from window.prompt() with empty input
-    while (userInput === "") { 
-      userInput = window.prompt("Nothing entered. Enter employee's salary:", "employee's salary");
-    }
-
     /*
     // If user's input is not a number (isNaN), alert user and set employee's salary to 0
     if (isNaN(userInput)) { 
@@ -91,15 +78,21 @@ const collectEmployees = function() {
     /*------- Note to Self --------
     Can also prompt user to re-enter employee's salary while user's input for employee's salary is not a number (isNaN), as follow:
     ------ End of Note to Self -------*/
-    while (isNaN(userInput)) {
-      userInput = window.prompt("Not a number (NaN) was entered. Please enter employee's salary:", "employee's salary");
+
+    //----- 3.1 Validate userInput ------
+    while (userInput === null || isNaN(userInput) || userInput === "") {
+      // Exit if user clicks Cancel, causing userInput = null
+      if (userInput === null) { 
+        return employeesArray;
+      } else if (isNaN(userInput)) {
+        userInput = window.prompt("Not a number (NaN) was entered. Please enter employee's salary:");
+      } else {
+        // Re-prompt for input if user clicks OK from window.prompt() with empty input
+        userInput = window.prompt("Nothing entered. Enter employee's salary:");
+      }
     }
 
-    // Exit if user clicks Cancel, causing userInput = null
-    if (userInput === null) { 
-      return employeesArray;
-    }
-
+    //---- 3.2 Set employee's salary ------
     // Parse employee's salary to float, then apply USD-currency format to properly display formatted employee's salary to website
     employee.salary = (parseFloat(userInput)).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
     
@@ -157,7 +150,6 @@ const getRandomEmployee = function(employeesArray) {
   } else {
     console.log(`No employees has been added. Please add employee(s).`);
   }
-  
 }
 
 /*
