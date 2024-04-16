@@ -14,6 +14,9 @@ const collectEmployees = function() {
 
   // Loop until user done adding employee(s)
   while (userInput && keepAdding) {
+
+    // Clear console log(s) for easier readability
+    //console.clear();
     
     // Create a new employee object
     const employee = {
@@ -80,20 +83,21 @@ const collectEmployees = function() {
     ------ End of Note to Self -------*/
 
     //----- 3.1 Validate userInput ------
-    while (userInput === null || isNaN(userInput) || userInput === "") {
-      // Exit if user clicks Cancel, causing userInput = null
-      if (userInput === null) { 
-        return employeesArray;
-      } else if (isNaN(userInput)) {
+    while (isNaN(userInput) || userInput === "") {
+      if (isNaN(userInput)) {
         userInput = window.prompt("Not a number (NaN) was entered. Please enter employee's salary:");
       } else {
         // Re-prompt for input if user clicks OK from window.prompt() with empty input
         userInput = window.prompt("Nothing entered. Enter employee's salary:");
       }
     }
+    // Exit if user clicks Cancel, causing userInput = null
+    if (userInput === null) { 
+      return employeesArray;
+    } 
 
     //---- 3.2 Set employee's salary ------
-    // Parse employee's salary to float, then apply USD-currency format to properly display formatted employee's salary to website
+    // Parse employee's salary to float, then apply USD-currency format to properly display formatted employee's salary to browser
     employee.salary = (parseFloat(userInput)).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
     
     // Add new employee to the end of employeesArray
