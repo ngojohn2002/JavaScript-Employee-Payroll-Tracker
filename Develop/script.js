@@ -1,13 +1,13 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
+// Create an empty array to add employee data
+const employeesArray = [];
+
 // Collect employee data
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
  
-  // Create an empty array to add employee data
-  const employeesArray = [];
-
   // Set userInput and keepAdding to true to continue adding new employee
   let userInput = true;
   let keepAdding = true;
@@ -23,11 +23,11 @@ const collectEmployees = function() {
     }
 
     //-- 1. Prompt user for employee's first name --
-    userInput = window.prompt("Please enter employee's first name:");
+    userInput = window.prompt("Please enter employee's first name:", "employee's first name");
 
     // Re-prompt for input if user clicks OK from window.prompt() with empty input
     while (userInput === "") { 
-      userInput = window.prompt("Nothing entered. Please enter employee's first name:");
+      userInput = window.prompt("Nothing entered. Please enter employee's first name:", "employee's first name");
     }
 
     // Exit if user clicks Cancel, causing userInput = null
@@ -35,15 +35,24 @@ const collectEmployees = function() {
       return employeesArray;
     } 
 
+    //---- Set employee's first name ------
+    // Stringify userInput
+    //let stringififiedUserInput = JSON.stringify(userInput); 
+    // Capitalize first letter
+    //let capitalizedFirstLetter = stringififiedUserInput.charAt(0).toUpperCase(); 
+    let capitalizedFirstLetter = userInput.charAt(0).toUpperCase(); 
+    // Slice the remaining letters after first
+    //let remainingLetters = stringififiedUserInput.slice(1); 
+    let remainingLetters = userInput.slice(1); 
     // Set employee's first name
-    employee.firstName = userInput; 
+    employee.firstName = capitalizedFirstLetter + remainingLetters;
 
     //-- 2. Prompt user for employee's last name --
-    userInput = window.prompt("Please enter employee's last name:");
+    userInput = window.prompt("Please enter employee's last name:", "employee's last name");
     
     // Re-prompt for input if user clicks OK from window.prompt() with empty input
     while (userInput === "") { 
-      userInput = window.prompt("Nothing entered. Enter employee's last name:");
+      userInput = window.prompt("Nothing entered. Enter employee's last name:", "employee's last name");
     }
 
     // Exit if user clicks Cancel, causing userInput = null
@@ -51,41 +60,55 @@ const collectEmployees = function() {
       return employeesArray;
     }
 
-    // Set employee's last name
-    employee.lastName = userInput; 
-    
+     //---- Set employee's last name ------
+    // Stringify userInput
+    //stringififiedUserInput = JSON.stringify(userInput); 
+    // Capitalize first letter
+    //capitalizedFirstLetter = stringifyUserInput.charAt(0).toUpperCase(); 
+    capitalizedFirstLetter = userInput.charAt(0).toUpperCase(); 
+    // Slice the remaining letters after first
+    //remainingLetters = stringifyUserInput.slice(1); 
+    remainingLetters = userInput.slice(1); 
+    // Set employee's first name
+    employee.lastName = capitalizedFirstLetter + remainingLetters;
+
     //-- 3. Prompt user for employee's salary --
-    userInput = window.prompt("Enter employee's salary:");
+    userInput = window.prompt("Enter employee's salary:", "employee's salary");
     
     // Re-prompt for input if user clicks OK from window.prompt() with empty input
     while (userInput === "") { 
-      userInput = window.prompt("Nothing entered. Enter employee's salary:");
+      userInput = window.prompt("Nothing entered. Enter employee's salary:", "employee's salary");
     }
 
-    // Exit if user clicks Cancel, causing userInput = null
-    if (userInput === null) { 
-      return employeesArray;
-    }
-
+    /*
     // If user's input is not a number (isNaN), alert user and set employee's salary to 0
     if (isNaN(userInput)) { 
       window.alert(`Not a number (NaN) was entered. Salary for ${employee.firstName} ${employee.lastName} will default to 0.`);
       userInput = 0;
     } 
+    */
 
     /*------- Note to Self --------
     Can also prompt user to re-enter employee's salary while user's input for employee's salary is not a number (isNaN), as follow:
+    ------ End of Note to Self -------*/
     while (isNaN(userInput)) {
-      userInput = window.prompt("Not a number (NaN) was entered. Please enter employee's salary:");
+      userInput = window.prompt("Not a number (NaN) was entered. Please enter employee's salary:", "employee's salary");
     }
-    ------ End of Note to Self -------*/ 
-    
-    // Parse employee's salary to float, then apply USD-currency format to properly display formatted employee's salary
+
+    // Exit if user clicks Cancel, causing userInput = null
+    if (userInput === null) { 
+      return employeesArray;
+    }
+
+    // Parse employee's salary to float, then apply USD-currency format to properly display formatted employee's salary to website
     employee.salary = (parseFloat(userInput)).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
     
     // Add new employee to the end of employeesArray
     employeesArray.push(employee);
 
+    // Display newly updated employeesArray
+    displayEmployees(employeesArray);
+    
     // Confirm if user is done adding employee
     keepAdding = window.confirm("Add another employee?");
     if (keepAdding === null) {
@@ -112,7 +135,7 @@ const displayAverageSalary = function(employeesArray) {
       totalSalary += Number((employeesArray[i].salary).replace(/[^0-9.-]+/g,""));
     }
 
-    // Re-apply USD currency format to the calculated average salary for properly formatted display
+    // Re-apply USD currency format to the calculated average salary for properly formatted display to console
     let formattedAverageSalary = (totalSalary / employeesArray.length).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     
     console.log(`The average employee salary between our ${employeesArray.length} employee(s) is ${formattedAverageSalary}`);
