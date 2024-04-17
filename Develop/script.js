@@ -15,9 +15,6 @@ const collectEmployees = function() {
   // Loop until user done adding employee(s)
   while (userInput && keepAdding) {
 
-    // Clear console log(s) for easier readability
-    //console.clear();
-    
     // Create a new employee object
     const employee = {
       firstName: "",
