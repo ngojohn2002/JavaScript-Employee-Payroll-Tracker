@@ -23,7 +23,7 @@ THEN my employee data is displayed on the page sorted alphabetically by last nam
 ![Screenshot of JavaScript-Employee-Payroll-Tracker app](Assets/03-javascript-homework-console-demo.png)
 
 ## Link to deployed app
-To visit my deployed web app, click --> [JavaScript-Employee-Payroll-Tracker](https://ngojohn2002.github.io/JavaScript-Employee-Payroll-Tracker/Develop/).
+To visit my deployed web app, click --> [JavaScript-Employee-Payroll-Tracker](https://ngojohn2002.github.io/JavaScript-Employee-Payroll-Tracker/).
   
   
   
