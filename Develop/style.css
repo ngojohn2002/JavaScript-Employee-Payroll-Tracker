@@ -9,7 +9,7 @@ body,
 .wrapper {
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0;;
 }
 
 body {
@@ -115,17 +115,43 @@ button[disabled] {
   float: right;
 }
 
-
-@media (max-width: 690px) {
+@media screen and (min-width: 768px) {
+  header {
+     background: yellowgreen;
+  }
+  footer {
+     background-color: yellowgreen;
+  }
   .btn {
-    font-size: 1rem;
+     font-size: 1.5rem; yellowgreen;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  header {
+    background: olive;
+ }
+ footer {
+    background-color: olive;
+ }
+ .btn {
+    font-size: 1.2rem;
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
   }
 }
 
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
+@media screen and (max-width: 500px) {
+  main {
+    flex-direction: column;
+  }
+  header {
+    background: orchid;
+ }
+ footer {
+    background-color: orchid;
+ }
+ .btn {
+    font-size: 1rem;
   }
 }
