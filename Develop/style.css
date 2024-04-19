@@ -117,10 +117,10 @@ button[disabled] {
 
 @media screen and (min-width: 768px) {
   header {
-     background: yellowgreen;
+     background:#daa520;
   }
   footer {
-     background-color: yellowgreen;
+     background-color: #daa520;
   }
   .btn {
      font-size: 1.5rem;;
@@ -129,10 +129,10 @@ button[disabled] {
 
 @media screen and (max-width: 690px) {
   header {
-    background: olive;
+    background: #bc8f8f;
  }
  footer {
-    background-color: olive;
+    background-color: #bc8f8f;
  }
  .btn {
     font-size: 1.2rem;
@@ -146,10 +146,10 @@ button[disabled] {
     flex-direction: column;
   }
   header {
-    background: orchid;
+    background: #40e0d0;
  }
  footer {
-    background-color: orchid;
+    background-color: #40e0d0;
  }
  .btn {
     font-size: 1rem;
