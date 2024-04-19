@@ -115,7 +115,7 @@ button[disabled] {
   float: right;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   header {
      background:#daa520;
   }
@@ -136,8 +136,6 @@ button[disabled] {
  }
  .btn {
     font-size: 1.2rem;
-    margin: 16px 0px 0px 0px;
-    padding: 10px 15px;
   }
 }
 
